@@ -46,7 +46,7 @@ function difference(numbers) {
   function checkNumber(aNumber) {
     return Number.isInteger(aNumber)
   }
-  
+
   if (numbers == undefined || numbers.length < 1 || { // check to see if is a number )
     return undefined;
   } else {
@@ -61,7 +61,16 @@ function difference(numbers) {
 
 
 function max(number) {
-  // write your code here
+
+  if (!number || number.length === 0) {
+    return undefined;
+}
+
+  else if (number.length < 3 && number.length % 2 !== 1) {
+  return undefined;
+} else if (isNaN(number)) {
+  return undefined;
+  }
 }
 
 function middle(values) {
