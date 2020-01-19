@@ -15,6 +15,7 @@ function commonEnd(a, b) {
 }
 
 function endsMeet(values, n) {
+
     let empty = [];
 
     if (!values || values.length < n || n <= 0) {
@@ -41,8 +42,23 @@ function endsMeet(values, n) {
 }
 
 function difference(numbers) {
-  // write your code here
+
+  function checkNumber(aNumber) {
+    return Number.isInteger(aNumber)
+  }
+  
+  if (numbers == undefined || numbers.length < 1 || { // check to see if is a number )
+    return undefined;
+  } else {
+    let ascending = numbers.sort(function(a, b){return a - b});
+    let smallest = numbers[0]
+    let descending = numbers.sort(function(a, b){return b - a});
+    let largest = numbers[0]
+    let difference = largest - smallest;
+    return difference;
+  }
 }
+
 
 function max(number) {
   // write your code here
