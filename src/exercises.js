@@ -85,8 +85,41 @@ function middle(values) {
 }
 
 function increasing(numbers) {
-  // write your code here
-}
+  
+  var num = 0;
+  var last = -1;
+
+  if (!numbers || numbers.length === 0) {
+    return false;
+  }
+  if (numbers.length < 3){
+    return false;
+  }
+  if(Number.isNaN(numbers)){
+    return false;
+  }
+  if(!isInteger(number)){
+    return false
+  }
+    for (i = 0; i < numbers.length; i++) {
+      if (numbers[i] === last + 1) {
+        last = numbers[i]
+         if (numbers[u + 1] === last + 1) {
+          return true;
+          num = 1;
+          break;
+        }
+        else {
+        last = -1;
+      }
+    }
+      else {
+        last = numbers[i];
+      }
+    }
+    if (num === 0) {
+      return false;
+    }
 
 function everywhere(values, x) {
   // write your code here
