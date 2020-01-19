@@ -15,7 +15,29 @@ function commonEnd(a, b) {
 }
 
 function endsMeet(values, n) {
-  // write your code here
+    let empty = [];
+
+    if (!values || values.length < n || n <= 0) {
+      return empty;
+    }
+    else if (n > 0) {
+      let newArray = [];
+      let first;
+
+      for (f = 0; f <= n - 1; f++) {
+        first = values[f];
+        newArray.push(first);
+      }
+      let end = values.length - 1;
+      let endStart = end - n;
+      for (e = endStart; e <= end; e++) {
+        newArray.push(e);
+      }
+      return newArray;
+    } else {
+      return values;
+    }
+
 }
 
 function difference(numbers) {
