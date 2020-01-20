@@ -173,11 +173,11 @@ function consecutive(numbers) {
 
   function balance(numbers) {
 
-    let size = 0
-    let sum1 = 0
-    let sum2 = 0
-    let count = 0
-    
+    var count = 0;
+    var size = 0;
+    var sum1 = 0;
+    var sum2 = 0;
+
     if (!numbers || numbers.length < 2) {
       return false;
     }
@@ -210,9 +210,35 @@ function consecutive(numbers) {
     }
   }
 
-function clumps(values) {
-  // write your code here
-}
+  function clumps(values) {
+
+  var clumpFinalIndex;
+  var clump = 0;
+  var value;
+  var sameValues;
+
+  if (!values) {
+    return -1;
+  }
+  else {
+     for (let w = 0; w < values.length - 1; w++) {
+         let test2 = w + 1;
+         let test1 = w;
+         value = values[test1];
+         sameValues = values[test2];
+         if (value === sameValues) {
+             while (value === sameValues) {
+                 value = values[test1++];
+                 sameValues = values[test2++];
+              }
+             clump++;
+             clumpFinalIndex = test1 - 1;
+             w = clumpFinalIndex;
+          }
+       }
+        return clump;
+     }
+  }
 
 /*
  * Exports all functions for use in external grader.js file. Do not modify.
