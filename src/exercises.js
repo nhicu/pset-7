@@ -47,7 +47,7 @@ function difference(numbers) {
     return Number.isInteger(aNumber)
   }
 
-  if (numbers == undefined || numbers.length < 1 || { // check to see if is a number )
+  if (numbers == undefined || numbers.length < 1 ) // check to see if is a number )
     return undefined;
   } else {
     let ascending = numbers.sort(function(a, b){return a - b});
@@ -60,18 +60,28 @@ function difference(numbers) {
 }
 
 
-function max(number) {
-
-  if (!number || number.length === 0) {
+function max(numbers) {
+  
+  if (!numbers || numbers.length === 0) {
     return undefined;
-}
-
-  else if (number.length < 3 && number.length % 2 !== 1) {
-  return undefined;
-} else if (isNaN(number)) {
-  return undefined;
+  }
+  if (numbers.length % 2 === 0 || numbers.length < 3 ){
+    return undefined;
+  }
+  if (numbers.some(isNaN)){
+    return undefined;
+  }
+  else{
+    var first_element = numbers[0];
+    var middle_element = numbers[Math.floor(numbers.length/2)];
+    var last_element = numbers[numbers.length-1];
+    var array = [];
+    var largest = Number(Math.max.apply(null, array));
+    array.push(first_element, middle_element, last_element);
+    return  Number(Math.max.apply(null, array));
   }
 }
+
 
 function middle(values) {
   if (values == undefined || values.length < 3 || values.length % 2 == 0) {
