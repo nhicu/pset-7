@@ -96,35 +96,27 @@ function middle(values) {
 
 function increasing(numbers) {
   
-  if (!numbers || numbers.length < 3) {
-    return false;
-  }
-  let flag = false;
-  for (let i = 0; i < numbers.length - 2; i++) {
-    let index = Number.isInteger(numbers[i]);
-    if (index === false) {
-      return false;
-    }
-    let first = numbers[i];
-    let second = numbers[i + 1];
-    let third = numbers[i + 2];
-    let indexsecond = Number.isInteger(second);
-    let indexthird = Number.isInteger(third);
-
-    if (indexsecond === false || indexthird === false) {
-      return false;
-    }
-    if (first < second && second < third) {
-      flag = true;
-    }
-  }
-  if (flag) {
-    return true;
+  if (numbers == undefined || numbers == []) {
+    return undefined;
+  } else if (numbers.length < 3 || numbers.some(isNaN)) {
+    return undefined;
   } else {
+    for (let i = 1; i < numbers.length; i++) {
+      if ((numbers[i - 1] + 1) === numbers[i]) {
+        i++
+        if ((numbers[i - 1] + 1) === numbers[i]) {
+          return true;
+          break;
+        } else {
+          continue;
+        }
+      } else {
+        continue;
+      }
+    }
     return false;
   }
 }
-
 function everywhere(values, x) {
 
   if (values != undefined && values.length >= 1 && x != undefined) {
