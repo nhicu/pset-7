@@ -15,49 +15,43 @@ function commonEnd(a, b) {
 }
 
 function endsMeet(values, n) {
+  
+  let newA = []
 
-    let empty = [];
-
-    if (!values || values.length < n || n <= 0) {
-      return empty;
-    }
-    else if (n > 0) {
-      let newArray = [];
-      let first;
-
-      for (f = 0; f <= n - 1; f++) {
-        first = values[f];
-        newArray.push(first);
-      }
-      let end = values.length - 1;
-      let endStart = end - n;
-      for (e = endStart; e <= end; e++) {
-        newArray.push(e);
-      }
-      return newArray;
-    } else {
+  if (!values || values.length < n || !(n % 1 === 0) || n <= 0) {
+    return newA;
+  } else {
+    if (n === 0) {
       return values;
+    } else {
+      for (let x = 0; x < n; x++) {
+        if (values[x] !== undefined) {
+          newA.push(values[x]);
+        }
+      }
+      for (let x = n; x > 0; x--) {
+        if (values[values.length - x] !== undefined) {
+          newA.push(values[values.length - x]);
+        }
+      }
+      return newA;
     }
-
+  }
 }
 
 function difference(numbers) {
-  function checkNumber(aNumber) {
 
-    return Number.isInteger(aNumber)
-  }
-
-  if (numbers == undefined || numbers.length < 1 ) // check to see if is a number )
+  if (!numbers || numbers.some(isNaN) || numbers.length < 1) {
     return undefined;
   } else {
-    let ascending = numbers.sort(function(a, b){return a - b});
-    let smallest = numbers[0]
-    let descending = numbers.sort(function(a, b){return b - a});
-    let largest = numbers[0]
-    let difference = largest - smallest;
+    let maximum = Number(Math.max.apply(null, numbers));
+    let minimum = Number(Math.min.apply(null, numbers));
+    let difference = maximum - minimum
+
     return difference;
   }
 }
+
 
 
 function max(number) {
@@ -84,55 +78,113 @@ function max(number) {
 
 
 function middle(values) {
-  if (values == undefined || values.length < 3 || values.length % 2 == 0) {
+
+  if (!values || values.length % 2 === 0 || values.length < 3) {
     return [];
   } else {
-    let leftMiddle = values[(values.length - 1) - (Math.ceil(values.length / 2))];
-    let middle = values[values.length - (Math.ceil(values.length / 2))];
-    let array = [leftMiddle, middle]
-    return array;
+    let newA = [];
+
+    let middle = Math.floor(values.length / 2);
+    newA.push(values[middle - 1], values[middle], values[middle + 1]);
+
+    return newA;
   }
 }
 
+
 function increasing(numbers) {
-  
-  if (numbers == undefined || numbers == []) {
-    return undefined;
-  } else if (numbers.length < 3 || numbers.some(isNaN)) {
-    return undefined;
-  } else {
-    for (let i = 1; i < numbers.length; i++) {
-      if ((numbers[i - 1] + 1) === numbers[i]) {
-        i++
-        if ((numbers[i - 1] + 1) === numbers[i]) {
-          return true;
-          break;
-        } else {
-          continue;
-        }
-      } else {
-        continue;
-      }
+
+  if (!numbers || numbers.length < 3) {
+    return false;
+  }
+  let flag = false;
+  for (let i = 0; i < numbers.length - 2; i++) {
+    let index = Number.isInteger(numbers[i]);
+    if (index === false) {
+      return false;
     }
+    let first = numbers[i];
+    let second = numbers[i + 1];
+    let third = numbers[i + 2];
+    let indexsecond = Number.isInteger(second);
+    let indexthird = Number.isInteger(third);
+
+    if (indexsecond === false || indexthird === false) {
+      return false;
+    }
+    if (first < second && second < third) {
+      flag = true;
+    }
+  }
+  if (flag) {
+    return true;
+  } else {
     return false;
   }
 }
+
+
 function everywhere(values, x) {
 
-  if (values != undefined && values.length >= 1 && x != undefined) {
-      for(let j = 0; j < values.length; j++) {
-        if (values[j] === x || values[j - 1] === x || values[j + 1] === x) {
-          return true;
+  let flag;
+  if (!values || values.length < 1 || !x) {
+    return false;
+  } else {
+    for (let y = 0; y < values.length - 1; y++) {
+      if (values[y].isNaN) {
+        flag = false;
+        return false;
+      }
+    }
+
+    let first;
+    let second;
+    let third;
+
+    for (let i = 0; i < values.length - 1; i++) {
+      if (i === 0) {
+        if (values[i] === x) {
+          flag = true;
+        } else if (values[i + 1] === x) {
+          flag = true;
+        } else {
+          flag = false;
+          return false;
         }
-        else {
+      } else if (i === (values.length - 1)) {
+        if (values[i] === x) {
+          flag = true;
+        } else if (values[i - 1]) {
+          flag = true;
+        } else {
+          flag = false;
+          return false;
+        }
+      } else {
+        second = values[i];
+        first = values[i - 1];
+        third = values[i + 1];
+
+        if (second === x) {
+          flag = true;
+        } else if (first === x) {
+          flag = true;
+        } else if (third === x) {
+          flag = true;
+        } else {
+          flag = false;
           return false;
         }
       }
     }
-    else {
+
+    if (flag === false) {
       return false;
+    } else {
+      return true;
     }
   }
+}
 
 function consecutive(numbers) {
 
