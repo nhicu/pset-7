@@ -99,23 +99,26 @@ function increasing(numbers) {
   if (!numbers || numbers.length < 3) {
     return false;
   }
-  let numeral = true;
-  for (i = 0; i <= numbers.length - 1; i++) {
-    let unknown = numbers[i];
-    if (isNaN(unknown)) {
-      numeral = false;
+  let flag = false;
+  for (let i = 0; i < numbers.length - 2; i++) {
+    let index = Number.isInteger(numbers[i]);
+    if (index === false) {
+      return false;
+    }
+    let first = numbers[i];
+    let second = numbers[i + 1];
+    let third = numbers[i + 2];
+    let indexsecond = Number.isInteger(second);
+    let indexthird = Number.isInteger(third);
+
+    if (indexsecond === false || indexthird === false) {
+      return false;
+    }
+    if (first < second && second < third) {
+      flag = true;
     }
   }
-  if (numeral === false) {
-    return false;
-  }
-  let status = false;
-  for (x = 0; x < numbers.length - 1; x++) {
-    if (numbers[x] < numbers[x + 1] && numbers[x + 1] < numbers[x + 2]) {
-      status = true;
-    }
-  }
-  if (status === true) {
+  if (flag) {
     return true;
   } else {
     return false;
