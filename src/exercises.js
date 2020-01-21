@@ -95,41 +95,31 @@ function middle(values) {
 }
 
 function increasing(numbers) {
-
-  var num = 0;
-  var last = -1;
-
-  if (!numbers || numbers.length === 0) {
+  
+  if (!numbers || numbers.length < 3) {
     return false;
   }
-  if (numbers.length < 3){
+  let numeral = true;
+  for (i = 0; i <= numbers.length - 1; i++) {
+    let unknown = numbers[i];
+    if (isNaN(unknown)) {
+      numeral = false;
+    }
+  }
+  if (numeral === false) {
     return false;
   }
-  if(Number.isNaN(numbers)){
+  let status = false;
+  for (x = 0; x < numbers.length - 1; x++) {
+    if (numbers[x] < numbers[x + 1] && numbers[x + 1] < numbers[x + 2]) {
+      status = true;
+    }
+  }
+  if (status === true) {
+    return true;
+  } else {
     return false;
   }
-  if(!isInteger(number)){
-    return false
-  }
-    for (i = 0; i < numbers.length; i++) {
-      if (numbers[i] === last + 1) {
-        last = numbers[i]
-         if (numbers[u + 1] === last + 1) {
-          return true;
-          num = 1;
-          break;
-        }
-        else {
-        last = -1;
-      }
-    }
-      else {
-        last = numbers[i];
-      }
-    }
-    if (num === 0) {
-      return false;
-    }
 }
 
 function everywhere(values, x) {
