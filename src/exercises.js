@@ -60,21 +60,21 @@ function difference(numbers) {
 }
 
 
-function max(numbers) {
-  
-  if (!numbers || numbers.length === 0) {
+function max(number) {
+
+  if (!number || number.length === 0) {
     return undefined;
   }
-  if (numbers.length % 2 === 0 || numbers.length < 3 ){
+  if (number.length % 2 === 0 || number.length < 3 ){
     return undefined;
   }
-  if (numbers.some(isNaN)){
+  if (number.some(isNaN)){
     return undefined;
   }
   else{
-    var first_element = numbers[0];
-    var middle_element = numbers[Math.floor(numbers.length/2)];
-    var last_element = numbers[numbers.length-1];
+    var first_element = number[0];
+    var middle_element = number[Math.floor(number.length/2)];
+    var last_element = number[number.length-1];
     var array = [];
     var largest = Number(Math.max.apply(null, array));
     array.push(first_element, middle_element, last_element);
